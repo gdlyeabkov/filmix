@@ -10,13 +10,7 @@
                     Распространенные вопросы
                 </span>
                 <span class="footerLink">
-                    Для инвесторов
-                </span>
-                <span class="footerLink">
-                    Конфиденциальность
-                </span>
-                <span class="footerLink">
-                    Проверка скорости
+                    Настройки файлов cookie
                 </span>
             </div>
             <div class="footerLinkColumn">
@@ -24,38 +18,17 @@
                     Центр поддержки
                 </span>
                 <span class="footerLink">
-                    Вакансии
-                </span>
-                <span class="footerLink">
-                    Настройки файлов cookie
-                </span>
-                <span class="footerLink">
                     Юридические уведомления
                 </span>
             </div>
             <div class="footerLinkColumn">
-                <span @click="$router.push({ name: 'Account' })" class="footerLink">
-                    Аккаунт
-                </span>
                 <span class="footerLink">
-                    Способы просмотра
-                </span>
-                <span class="footerLink">
-                    Корпоративная информация
-                </span>
-                <span class="footerLink">
-                    Только на Filmix
+                    Правила использования
                 </span>
             </div>
             <div class="footerLinkColumn">
                 <span class="footerLink">
-                    Медиацентр
-                </span>
-                <span class="footerLink">
-                    Правила использования
-                </span>
-                <span class="footerLink">
-                    Свяжитесь с нами
+                    Конфиденциальность
                 </span>
             </div>
         </div>
@@ -71,9 +44,6 @@
                     <option value="English">English</option>
                 </select>
             </div>
-            <span>
-                Filmix Россия
-            </span>
         </div>
     </div>
 </template>
@@ -91,7 +61,7 @@ export default {
         height: 350px;
         left: 0px;
         width: 100%;
-        top: calc(750%);
+        top: calc(120%);
         background-color: rgb(25, 25, 25);
     }
 

@@ -1,11 +1,16 @@
 <template>
     <div class="header">
-        <div class="logo">
-            Filmix
+        <div>
+            <span class="logo">
+                Filmix
+            </span>
+            <span class="breadcrumbs">
+                | Центр поддержки
+            </span>
         </div>
         <div class="btns">
-            <button class="btn btn-light">
-                Русский
+            <button class="arrangeBtn btn btn-dark">
+                Оформить подписку Filmix
             </button>
             <button @click="$router.push({ name: 'Account' })" class="btn btn-danger">
                 Войти
@@ -25,6 +30,7 @@ export default {
         justify-content: space-between;
         box-sizing: border-box;
         padding: 15px;
+        background-color: rgb(0, 0, 0);
     }
 
     .logo {
@@ -39,6 +45,25 @@ export default {
     .btns {
         display: flex;
         justify-content: space-between;
-        width: 15%;
+        width: 35%;
     }
+
+    .btns > button {
+        height: 40px;
+        padding: 0px 35px;
+        margin: 15px;
+    }
+
+    .breadcrumbs {
+        color: rgb(255, 255, 255);
+        font-size: 18px;
+        font-weight: bolder;
+    }
+
+    .arrangeBtn {
+        background-color: transparent;
+        outline: 1px solid rgb(255, 255, 255);
+        font-weight: bolder;
+    }
+
 </style>

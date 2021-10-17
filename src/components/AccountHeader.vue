@@ -4,12 +4,6 @@
             Filmix
         </div>
         <div class="btns">
-            <button class="btn btn-light">
-                Русский
-            </button>
-            <button @click="$router.push({ name: 'Account' })" class="btn btn-danger">
-                Войти
-            </button>
         </div>
     </div>
 </template>
