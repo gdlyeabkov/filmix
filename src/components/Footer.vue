@@ -60,10 +60,17 @@
             </div>
         </div>
         <div class="footerLinkColumn auxiliaryMenu">
-            <button class="btn btn-light">
-                Выберите язык
-                Русский
-            </button>
+            <div class="languageContainer">
+                <span class="material-icons">
+                    language
+                </span>
+                <select class="selector form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option value="Русский">
+                        Русский
+                    </option>
+                    <option value="English">English</option>
+                </select>
+            </div>
             <span>
                 Filmix Россия
             </span>
@@ -84,7 +91,7 @@ export default {
         height: 350px;
         left: 0px;
         width: 100%;
-        top: calc(150%);
+        top: calc(750%);
         background-color: rgb(25, 25, 25);
     }
 
@@ -108,12 +115,30 @@ export default {
     }
 
     .auxiliaryMenu {
-        width: 25%;
+        width: 35%;
+        box-sizing: border-box;
+        padding: 0px 150px;
     }
     
     .help {
         margin-left: 35px;
         font-weight: bolder;
+    }
+
+    .selector {
+        border: 1px solid transparent;
+        outline: 1px solid rgb(50, 50, 50);
+        background-color: transparent;
+        color: rgb(200, 200, 200);
+        width: 150px;
+    }
+
+    .languageContainer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 200px;
+        
     }
 
 </style>
