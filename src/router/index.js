@@ -6,6 +6,7 @@ import CorporationInfo from '../views/CorporationInfo.vue'
 import Privacy from '../views/Privacy.vue'
 import Usability from '../views/Usability.vue'
 import Support from '../views/Support.vue'
+import PersonalArea from '../views/PersonalArea.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/support',
     name: 'Support',
     component: Support
+  },
+  {
+    path: '/area',
+    name: 'PersonalArea',
+    component: PersonalArea
   },
 
 ]

@@ -3,12 +3,17 @@
         <AccountHeader />
         <div class="authForm">
             <h1 class="authFormHeader">Войти</h1>
-            <input type="text" placeholder="Адрес электронной почты или номер телефона" class="authFormControl form-control" />
-            <input type="text" placeholder="Пароль" class="authFormControl form-control" />
+            <input v-model="subscriberEmail" type="text" placeholder="Адрес электронной почты или номер телефона" class="authFormControl form-control" />
+            <input v-model="subscriberPassword" type="password" placeholder="Пароль" class="authFormControl form-control" />
             <div class="authFormBtnContainer">
-                <button class="authFormBtn btn btn-danger">
+                <button @click="login()" class="authFormBtn btn btn-danger">
                     Войти
                 </button>
+            </div>
+            <div class="errorsContainer">
+                <span class="errors">
+                    {{ errors }}
+                </span>
             </div>
             <div class="authFormBtnContainer">
                 <div>
@@ -61,10 +66,49 @@ export default {
     name: 'Account',
     data(){
         return {
-            details: false
+            details: false,
+            subscriberEmail: '',
+            subscriberPassword: '',
+            errors: ''
         }
     },
     methods: {
+        login(){
+            console.log('вхожу')
+            fetch(`http://localhost:4000/api/subscribers/check/?subscriberemail=${this.subscriberEmail}&subscriberpassword=${this.subscriberPassword}`, {
+                mode: 'cors',
+                method: 'GET'
+            }).then(response => response.body).then(rb  => {
+                const reader = rb.getReader()
+                return new ReadableStream({
+                start(controller) {
+                    function push() {
+                    reader.read().then( ({done, value}) => {
+                        if (done) {
+                        console.log('done', done);
+                        controller.close();
+                        return;
+                        }
+                        controller.enqueue(value);
+                        console.log(done, value);
+                        push();
+                    })
+                    }
+                    push();
+                }
+                });
+            }).then(stream => {
+                return new Response(stream, { headers: { "Content-Type": "text/html" } }).text();
+            })
+            .then(result => {
+                console.log(`JSON.parse(result).status: ${JSON.parse(result).status}`)
+                if(JSON.parse(result).status.includes('OK')) {
+                    this.$router.push({ name: 'PersonalArea' })
+                } else if(JSON.parse(result).status.includes('Error')) {
+                    this.errors = 'Ошибка входа'
+                }
+            })
+        },
         getUsability(){
             window.open('https://policies.google.com/privacy')
         },
@@ -174,6 +218,17 @@ export default {
     .needHelp:hover {
         text-decoration: underline;
         cursor: pointer;
+    }
+
+    .errorsContainer {
+        display: flex;
+        justify-content: center;
+    }
+
+    .errors {
+        font-weight: bolder;
+        color: rgb(150, 0, 0);
+        font-size: 24px;
     }
 
 </style>
