@@ -4,8 +4,11 @@ const express = require('express')
 const path = require('path')
 const serveStatic = require('serve-static')
 
+const shortid = require('shortid')
+
 const app = express()
 const bcrypt = require('bcrypt')
+const node_media_server = require('./media_server')
 
 app.use('/', serveStatic(path.join(__dirname, '/dist')))
 
@@ -38,7 +41,8 @@ const SubscriberSchema = new mongoose.Schema({
     balance: {
         type: Number,
         default: 0
-    }
+    },
+    streamKey: String
 }, { collection : 'mysubscribers' });
 
 const SubscriberModel = mongoose.model('SubscriberModel', SubscriberSchema);
@@ -80,7 +84,7 @@ app.get('/api/subscribers/create', (req, res) => {
                 generatedPassword += randomLetter
             }
             encodedPassword = bcrypt.hashSync(generatedPassword, saltRounds)
-            let newSubscriber = new SubscriberModel({ email: req.query.subscriberemail, password: encodedPassword });
+            let newSubscriber = new SubscriberModel({ email: req.query.subscriberemail, password: encodedPassword, stream_key: shortid.generate() });
             newSubscriber.save(function (err) {
                 if(err){
                     return res.json({ "status": "Error" })
@@ -168,5 +172,5 @@ app.get('**', (req, res) => {
     
 // const port = process.env.PORT || 8080
 const port = 4000  
-
+node_media_server.run();
 app.listen(port)
