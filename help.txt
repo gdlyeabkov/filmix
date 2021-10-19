@@ -1,2 +1,3 @@
 ffmpeg -re -i ./media/superman.mp4 -f flv rtmp://127.0.0.1:1935/live
 https://obsproject.com/download
+https://habr.com/ru/company/ruvds/blog/457860/
