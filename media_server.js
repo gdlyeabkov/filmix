@@ -1,4 +1,4 @@
-SubscriberModel = require('index').SubscriberModel;
+const SubscriberModel = require('./index').SubscriberModel;
 const NodeMediaServer = require('node-media-server'),
     config = require('./config/default').rtmp_server;
  
